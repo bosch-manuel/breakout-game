@@ -1,0 +1,19 @@
+{
+  "name": "breakout-game",
+  "version": "0.0.1",
+  "description": "Typescript version of https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bosch-manuel/breakout-game.git"
+  },
+  "author": "Manuel Boesch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bosch-manuel/breakout-game/issues"
+  },
+  "homepage": "https://github.com/bosch-manuel/breakout-game#readme"
+}
