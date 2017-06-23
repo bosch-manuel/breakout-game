@@ -3,3 +3,4 @@
 /node_modules
 /breakout-game
 /.vscode
+/test/compiled
