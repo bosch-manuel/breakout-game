@@ -4,7 +4,7 @@
   "description": "Typescript version of https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript",
   "main": "src/index.html",
   "scripts": {
-    "test": " tsc -p test/test_tsconfig.json && mocha --recursive test/compiled",
+    "test": "rm -rf test/compiled/ && tsc -p test/test_tsconfig.json && mocha --recursive test/compiled",
     "clean": "rm -rf lib/*"
   },
   "repository": {
