@@ -1,28 +1,30 @@
 import { ISubject } from "./ISubject";
-import { IObserver } from "./IObserver";
 
 export class BasicSubject implements ISubject {
-    private _observers: IObserver[];
+    private _observers: Map<any, Function> = new Map<any, Function>();
 
-    public subscribe(observer: IObserver): void {
-        if (this._observers.indexOf(observer) == -1) {
-            this._observers.push(observer);
+    public subscribe(observer: any, callBack: Function): void {
+        if (!this._observers.has(observer)) {
+            this._observers.set(observer, callBack);
         }
     }
 
-    public unsubcribe(observer: IObserver): void {
-        let index = this._observers.indexOf(observer);
-        if (index > -1) {
-            this._observers.splice(index, 1);
+    public unsubcribe(observer: any): void {
+        let index = this._observers.has(observer);
+        if (this._observers.has(observer)) {
+            this._observers.delete(observer);
         }
     }
 
-    public get observers(): Array<IObserver> {
-        return this._observers;
+    public get amountObservers(): number {
+        return this._observers.size;
     }
 
-    private notify(): void {
-        this._observers.forEach((observer: IObserver) => observer.update());
+    /**
+     * Calls the callback for every observer
+     */
+    protected notify(): void {
+        this._observers.forEach((callBack: Function) => callBack());
     }
 
 }

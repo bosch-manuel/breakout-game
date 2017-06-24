@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
-    /* Basic Options */                       
-    "target": "es5",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
-    "module": "commonjs",                     /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
+    /* Basic Options */
+    "target": "es5", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "module": "commonjs", /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
     "outDir": "./lib",
     "sourceMap": true
   },
-  "include":[
-	"src/**/*"
-	]
+  "include": [
+    "src/**/*"
+  ]
 }

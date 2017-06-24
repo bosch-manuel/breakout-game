@@ -1,8 +1,7 @@
 import { Ball } from "../model/Ball";
-import { IObserver } from "../utils/observer/IObserver";
 import { Point } from "../model/Point";
 
-export class HTMLBall implements IObserver {
+export class HTMLBall {
     private _context: CanvasRenderingContext2D;
     private _ball: Ball;
     private _previousBall: Ball;
