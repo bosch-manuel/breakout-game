@@ -1,4 +1,4 @@
-import { Ball } from "./model/Ball";
+import { BallModel } from "./model/BallModel";
 import { HTMLBall } from "./view/ball/HTMLBall";
 import { GameController } from "./controller/GameController"
 function createMainCanvas(): HTMLCanvasElement {

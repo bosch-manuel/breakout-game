@@ -1,7 +1,7 @@
 import { Point } from "./Point"
 import { BasicSubject } from "../utils/observer/BasicSubject";
 
-export class Ball extends BasicSubject {
+export class BallModel extends BasicSubject {
     private _radius: number;
     private _position: Point;
     private _color: string;
@@ -30,7 +30,7 @@ export class Ball extends BasicSubject {
         return this._color;
     }
 
-    public clone(): Ball {
-        return new Ball(this.radius, new Point(this.position.x, this.position.y));
+    public clone(): BallModel {
+        return new BallModel(this.radius, new Point(this.position.x, this.position.y));
     }
 }

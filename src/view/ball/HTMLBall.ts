@@ -1,13 +1,13 @@
-import { Ball } from "../../model/Ball";
+import { BallModel } from "../../model/BallModel";
 import { Point } from "../../model/Point";
 import { IBallView } from "./IBallView";
 
 export class HTMLBall implements IBallView {
     private _context: CanvasRenderingContext2D;
-    private _data: Ball;
-    private _previousBall: Ball;
+    private _data: BallModel;
+    private _previousBall: BallModel;
 
-    constructor(context: CanvasRenderingContext2D, ball: Ball) {
+    constructor(context: CanvasRenderingContext2D, ball: BallModel) {
         this._context = context;
         this.data = ball;
     }
@@ -18,7 +18,7 @@ export class HTMLBall implements IBallView {
         }
     }
 
-    private drawBall(ball: Ball = this._data, color: string = ball.color) {
+    private drawBall(ball: BallModel = this._data, color: string = ball.color) {
         this._context.beginPath();
         this._context.arc(ball.position.x, ball.position.y, ball.radius, 0, Math.PI * 2);
         this._context.fillStyle = color;
@@ -32,11 +32,11 @@ export class HTMLBall implements IBallView {
         this.drawBall(this._data)
     }
 
-    public get data(): Ball {
+    public get data(): BallModel {
         return this._data;
     }
 
-    public set data(ball: Ball) {
+    public set data(ball: BallModel) {
         if (this._data) {
             this._data.unsubcribe(this);
         }
