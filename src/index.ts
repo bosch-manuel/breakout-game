@@ -1,17 +1,19 @@
-import { Ball } from "./model/Ball";
+import { BallModel } from "./model/BallModel";
 import { HTMLBall } from "./view/ball/HTMLBall";
-
-function main(): number {
+import { GameController } from "./controller/GameController"
+function createMainCanvas(): HTMLCanvasElement {
     let canvas: HTMLCanvasElement = document.createElement('canvas');
-    canvas.id = "GameView";
+    canvas.id = "MainCanvas";
     canvas.height = 480;
     canvas.width = 320;
-    let context2d = canvas.getContext("2d");
     document.body.appendChild(canvas);
 
+    return canvas;
+}
 
-    let ball = new Ball();
-    let ball_view = new HTMLBall(context2d, ball);
+function main(): number {
+    let mainCanvas = createMainCanvas();
+    let gameController = new GameController(mainCanvas);
 
 
     return 0;

@@ -1,5 +1,5 @@
 import { DummyObserver } from "../utils/BasicSubject.test";
-import { Ball } from "../../src/model/Ball"
+import { BallModel } from "../../src/model/BallModel"
 import { Point } from "../../src/model/Point";
 import { assert } from "chai";
 
@@ -11,7 +11,7 @@ describe('Check Ball position updates', () => {
         new Point(-111, 22),
         new Point(31, 22)
     ]
-    let ball: Ball = new Ball();
+    let ball: BallModel = new BallModel();
     let observer: DummyObserver = new DummyObserver();
     ball.subscribe(observer, observer.notify.bind(observer));
 
@@ -23,7 +23,7 @@ describe('Check Ball position updates', () => {
     });
 
     it(`Notification count should stay unchanged after unsubscribing`, () => {
-        let ball: Ball = new Ball();
+        let ball: BallModel = new BallModel();
         let observer: DummyObserver = new DummyObserver();
         ball.subscribe(observer, observer.notify.bind(observer));
         fixture.forEach(function (input, index) { ball.position = input; });

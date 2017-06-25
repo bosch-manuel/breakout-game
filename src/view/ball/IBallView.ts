@@ -1,5 +1,5 @@
-import { Ball } from "../../model/Ball";
+import { BallModel } from "../../model/BallModel";
 
 export interface IBallView {
-    data: Ball;
+    data: BallModel;
 }
