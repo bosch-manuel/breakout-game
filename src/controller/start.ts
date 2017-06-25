@@ -1,19 +1,14 @@
-console.log("DIGGA");
+import { Ball } from "../model/Ball";
+import { Point } from "../model/Point";
+import { HTMLBall } from "../view/HTMLBall";
 
 function main(): number {
     let canvas: HTMLCanvasElement = document.getElementById("myCanvas") as HTMLCanvasElement;
     let ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.rect(20, 40, 50, 50);
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
-    ctx.closePath();
 
-    ctx.beginPath();
-    ctx.arc(240, 160, 20, 0, Math.PI * 2, false);
-    ctx.fillStyle = "green";
-    ctx.fill();
-    ctx.closePath();
+
+    let ball = new Ball(20, new Point(240, 160), "green");
+    let ball_view = new HTMLBall(ctx, ball);
     return 0;
 }
 

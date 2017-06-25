@@ -4,8 +4,8 @@
   "description": "Typescript version of https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript",
   "main": "src/index.html",
   "scripts": {
-    "test": " tsc -p test/test_tsconfig.json && mocha --recursive test/compiled",
-    "clean": "rm -rf lib/*"
+    "start": "node_modules/.bin/webpack --config webpack.config.js",
+    "test": "rm -rf test/compiled/ && tsc -p test/test_tsconfig.json && mocha --recursive test/compiled"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,11 @@
   "devDependencies": {
     "@types/chai": "^4.0.0",
     "@types/mocha": "^2.2.41",
+    "awesome-typescript-loader": "^3.1.3",
     "chai": "^4.0.2",
     "mocha": "^3.4.2",
-    "ts-node": "^3.1.0"
+    "ts-node": "^3.1.0",
+    "typescript": "^2.3.4",
+    "webpack": "^3.0.0"
   }
 }
