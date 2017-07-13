@@ -5,17 +5,10 @@ import { IBallView } from "./IBallView";
 export class HTMLBall implements IBallView {
     private _context: CanvasRenderingContext2D;
     private _data: BallModel;
-    private _previousBall: BallModel;
 
     constructor(context: CanvasRenderingContext2D, ball: BallModel) {
         this._context = context;
         this.data = ball;
-    }
-
-    private clearOldPosition(): void {
-        if (this._previousBall) {
-            this.drawBall(this._previousBall, "#eee");
-        }
     }
 
     private drawBall(ball: BallModel = this._data, color: string = ball.color) {
@@ -27,8 +20,6 @@ export class HTMLBall implements IBallView {
     }
 
     public update(): void {
-        this.clearOldPosition();
-        this._previousBall = this._data.clone();
         this.drawBall(this._data)
     }
 

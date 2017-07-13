@@ -10,11 +10,17 @@ export class BallController implements IController {
     }
 
     public update(elapsedTime: number): void {
-        throw new Error("Method not implemented.");
+        this._model.position = this.calculateNewPosition(elapsedTime);
     }
 
     private calculateNewPosition(elapsedTime: number): Point {
-        return new Point();
+        let seconds = elapsedTime / 1000;
+        
+        let newX = this._model.position.x + this._model.velocity * seconds;
+        console.log(seconds + ">>>> newX:" + newX);
+        return new Point(newX, this._model.position.y);
+
+
     }
     //direction of movement - angle 
     //calculates current postion of ball 

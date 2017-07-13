@@ -14,6 +14,7 @@ function createMainCanvas(): HTMLCanvasElement {
 function main(): number {
     let mainCanvas = createMainCanvas();
     let gameController = new GameController(mainCanvas);
+    gameController.startGame();
 
 
     return 0;
