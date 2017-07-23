@@ -7,5 +7,4 @@ export class GameModel {
         this._height = height;
     }
 
-    
 }
