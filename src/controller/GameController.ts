@@ -62,7 +62,7 @@ export class GameController {
     }
 
     private update(elapsedTime: number): void {
-        this._mainCanvas.getContext("2d").clearRect(0,0,this._mainCanvas.width,this._mainCanvas.height);
+        this._mainCanvas.getContext("2d").clearRect(0, 0, this._mainCanvas.width, this._mainCanvas.height);
         this._ballController.update(elapsedTime);
     }
 

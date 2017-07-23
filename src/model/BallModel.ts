@@ -7,7 +7,7 @@ export class BallModel extends BasicSubject {
     private _color: string;
     private _velocity: number;
 
-    constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 10) {
+    constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 100) {
         super();
         this._radius = radius;
         this._position = startPos;
