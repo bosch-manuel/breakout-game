@@ -6,6 +6,7 @@ export class BallModel extends BasicSubject {
     private _position: Point;
     private _color: string;
     private _velocity: number;
+    private _angle: number;//in rad
 
     constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 100) {
         super();
@@ -42,6 +43,15 @@ export class BallModel extends BasicSubject {
     public get velocity(): number {
         return this._velocity;
     }
+
+    public get angle(): number {
+        return this._angle;
+    }
+
+    public set angle(value: number) {
+        this._angle = value;
+    }
+
 
     public clone(): BallModel {
         return new BallModel(this.radius, new Point(this.position.x, this.position.y));

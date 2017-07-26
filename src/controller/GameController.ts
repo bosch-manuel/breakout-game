@@ -3,10 +3,12 @@ import { IBallView } from "../view/ball/IBallView";
 import { HTMLBall } from "../view/ball/HTMLBall";
 import { Point } from "../model/Point";
 import { BallController } from "./ball/BallController";
+import { GameModel } from "../model/GameModel";
 
 export class GameController {
     private handle: number;
     private ball: BallModel;
+    private gameModel: GameModel;
     private ball_view: IBallView;
     private _mainCanvas: HTMLCanvasElement;
     private gameOver: boolean;
@@ -15,8 +17,9 @@ export class GameController {
 
     constructor(mainCanvas: HTMLCanvasElement) {
         this._mainCanvas = mainCanvas;
+        this.gameModel = new GameModel(mainCanvas.height, mainCanvas.width);
         this.ball = this.createBall();
-        this._ballController = this.initializeBallController(this.ball);
+        this._ballController = this.initializeBallController(this.ball, this.gameModel);
         this.ball_view = this.initializeBallView(this._mainCanvas.getContext("2d"), this.ball);
     }
 
@@ -28,8 +31,8 @@ export class GameController {
         return new HTMLBall(context, ball);
     }
 
-    private initializeBallController(ball: BallModel): BallController {
-        return new BallController(ball);
+    private initializeBallController(ball: BallModel, gameModel: GameModel): BallController {
+        return new BallController(ball, gameModel);
     }
 
     public startGame(): void {
