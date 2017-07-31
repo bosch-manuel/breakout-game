@@ -26,5 +26,9 @@
     "ts-node": "^3.1.0",
     "typescript": "^2.3.4",
     "webpack": "^3.0.0"
+  },
+  "dependencies": {
+    "@types/victor": "^1.1.0",
+    "victor": "^1.1.0"
   }
 }

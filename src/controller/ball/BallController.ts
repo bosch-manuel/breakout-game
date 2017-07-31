@@ -7,8 +7,15 @@ export class BallController implements IController {
     private _ballModel: BallModel;
     private _gameModel: GameModel;
 
+    private _screenMaxX: number;
+    private _screenMaxY: number;
+
     constructor(ballModel: BallModel, gameModel: GameModel) {
         this._ballModel = ballModel;
+        this._gameModel = gameModel;
+
+        this._screenMaxX = this._gameModel.width;
+        this._screenMaxY = this._gameModel.height;
     }
 
     public update(elapsedTime: number): void {
@@ -16,11 +23,15 @@ export class BallController implements IController {
     }
 
     private calculateNewPosition(elapsedTime: number): Point {
+        //p_n = p_c + (d * r)/|r|
+
         let dy: number;
         let dx: number;
 
-        //detect collision
-        if()
+        //detect collision with borders
+        if (this._ballModel.position.x >= this._screenMaxX || this._ballModel.position.x <= 0) {
+
+        }
 
         let seconds = elapsedTime / 1000;
 
