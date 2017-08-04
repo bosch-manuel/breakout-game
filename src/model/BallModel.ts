@@ -1,19 +1,20 @@
-import { Point } from "./Point"
+import Point = require("victor");
 import { BasicSubject } from "../utils/observer/BasicSubject";
 
 export class BallModel extends BasicSubject {
     private _radius: number;
     private _position: Point;
     private _color: string;
-    private _velocity: number;
-    private _angle: number;//in rad
+    private _velocity: number; // pixel per second
+    private _direction: Point;//direction of movement
 
-    constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 100) {
+    constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 100, direction: Point = new Point(-1, 0)) {
         super();
         this._radius = radius;
         this._position = startPos;
         this._color = color;
         this._velocity = velocity;
+        this._direction = direction;
     }
 
     public get radius(): number {
@@ -43,15 +44,6 @@ export class BallModel extends BasicSubject {
     public get velocity(): number {
         return this._velocity;
     }
-
-    public get angle(): number {
-        return this._angle;
-    }
-
-    public set angle(value: number) {
-        this._angle = value;
-    }
-
 
     public clone(): BallModel {
         return new BallModel(this.radius, new Point(this.position.x, this.position.y));

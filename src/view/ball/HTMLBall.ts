@@ -1,5 +1,5 @@
 import { BallModel } from "../../model/BallModel";
-import { Point } from "../../model/Point";
+import Point = require("victor");
 import { IBallView } from "./IBallView";
 
 export class HTMLBall implements IBallView {

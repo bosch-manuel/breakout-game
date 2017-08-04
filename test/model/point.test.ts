@@ -1,5 +1,5 @@
-import { Point } from "../../src/model/Point"
-import {assert} from "chai";
+import Point = require("victor");
+import { assert } from "chai";
 
 describe('Check Point functionality', () => {
     const fixture = [
@@ -10,12 +10,12 @@ describe('Check Point functionality', () => {
     ]
 
     fixture.forEach(function (input) {
-        let point = new Point(input[0],input[1]);
+        let point = new Point(input[0], input[1]);
         it(`Point(${input[0]},${input[1]}).x should return ${input[0]}`, () => {
-                assert.equal(input[0],point.x);
+            assert.equal(input[0], point.x);
         });
         it(`Point(${input[0]},${input[1]}).y should return ${input[1]}`, () => {
-                assert.equal(input[1],point.y);
+            assert.equal(input[1], point.y);
         });
     });
 });

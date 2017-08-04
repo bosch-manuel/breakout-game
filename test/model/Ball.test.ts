@@ -1,6 +1,6 @@
 import { DummyObserver } from "../utils/BasicSubject.test";
 import { BallModel } from "../../src/model/BallModel"
-import { Point } from "../../src/model/Point";
+import Point = require("victor");
 import { assert } from "chai";
 
 

@@ -1,7 +1,7 @@
 import { BallModel } from "../model/BallModel";
 import { IBallView } from "../view/ball/IBallView";
 import { HTMLBall } from "../view/ball/HTMLBall";
-import { Point } from "../model/Point";
+import Point = require("victor");
 import { BallController } from "./ball/BallController";
 import { GameModel } from "../model/GameModel";
 

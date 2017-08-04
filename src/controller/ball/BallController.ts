@@ -1,7 +1,8 @@
 import { BallModel } from "../../model/BallModel";
 import { IController } from "../IController";
-import { Point } from "../../model/Point";
+import Point = require("victor");
 import { GameModel } from "../../model/GameModel";
+import Victor = require("victor");
 
 export class BallController implements IController {
     private _ballModel: BallModel;
@@ -24,6 +25,7 @@ export class BallController implements IController {
 
     private calculateNewPosition(elapsedTime: number): Point {
         //p_n = p_c + (d * r)/|r|
+        let vec: Victor = new Victor(1, 2);
 
         let dy: number;
         let dx: number;
