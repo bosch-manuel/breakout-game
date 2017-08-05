@@ -2,7 +2,6 @@ import { BallModel } from "../../model/BallModel";
 import { IController } from "../IController";
 import Point = require("victor");
 import { GameModel } from "../../model/GameModel";
-import Victor = require("victor");
 
 export class BallController implements IController {
     private _ballModel: BallModel;
@@ -24,26 +23,20 @@ export class BallController implements IController {
     }
 
     private calculateNewPosition(elapsedTime: number): Point {
+        let direction = this._ballModel.direction;
+        let seconds = elapsedTime / 1000;
+        let delta = this._ballModel.velocity * seconds; //        
+        let new_pos = this._ballModel.position.add(direction.multiplyScalar(delta).divideScalar(direction.length()));
         //p_n = p_c + (d * r)/|r|
-        let vec: Victor = new Victor(1, 2);
-
-        let dy: number;
-        let dx: number;
 
         //detect collision with borders
-        if (this._ballModel.position.x >= this._screenMaxX || this._ballModel.position.x <= 0) {
-
+        if (this._ballModel.position.x + this._ballModel.radius >= this._screenMaxX || this._ballModel.position.x - this._ballModel.radius <= 0) {
+            this._ballModel.direction.multiplyScalarX(-1);
+        }
+        if (this._ballModel.position.y + this._ballModel.radius >= this._screenMaxY || this._ballModel.position.y - this._ballModel.radius <= 0) {
+            this._ballModel.direction.multiplyScalarY(-1);
         }
 
-        let seconds = elapsedTime / 1000;
-
-        let newX = this._ballModel.position.x + this._ballModel.velocity * seconds;
-        let newY = this._ballModel.position.y + this._ballModel.velocity * seconds;
-        console.log(seconds + ">>>> newX:" + newX);
-        return new Point(newX, newY);
-
-
+        return new_pos;
     }
-    //direction of movement - angle 
-    //calculates current postion of ball 
 }

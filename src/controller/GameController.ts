@@ -17,7 +17,7 @@ export class GameController {
 
     constructor(mainCanvas: HTMLCanvasElement) {
         this._mainCanvas = mainCanvas;
-        this.gameModel = new GameModel(mainCanvas.height, mainCanvas.width);
+        this.gameModel = new GameModel(mainCanvas.width, mainCanvas.height);
         this.ball = this.createBall();
         this._ballController = this.initializeBallController(this.ball, this.gameModel);
         this.ball_view = this.initializeBallView(this._mainCanvas.getContext("2d"), this.ball);

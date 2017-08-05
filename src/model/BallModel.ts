@@ -8,7 +8,7 @@ export class BallModel extends BasicSubject {
     private _velocity: number; // pixel per second
     private _direction: Point;//direction of movement
 
-    constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 100, direction: Point = new Point(-1, 0)) {
+    constructor(radius = 10, startPos: Point = new Point(0, 0), color = "#0095DD", velocity: number = 100, direction: Point = new Point(-1, 1)) {
         super();
         this._radius = radius;
         this._position = startPos;
@@ -40,9 +40,16 @@ export class BallModel extends BasicSubject {
     public set velocity(velocity: number) {
         this._velocity = velocity;
     }
-
     public get velocity(): number {
         return this._velocity;
+    }
+
+    public get direction(): Point {
+        return this._direction;
+    }
+
+    public set direction(value: Point) {
+        this._direction = value;
     }
 
     public clone(): BallModel {
