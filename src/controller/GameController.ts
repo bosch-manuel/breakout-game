@@ -1,6 +1,6 @@
 import { BallModel } from "../model/BallModel";
 import { IBallView } from "../view/ball/IBallView";
-import { HTMLBall } from "../view/ball/HTMLBall";
+import { HTMLBall } from "../view/ball/2DCanvasBall";
 import Point = require("victor");
 import { BallController } from "./ball/BallController";
 import { GameModel } from "../model/GameModel";
@@ -21,6 +21,9 @@ export class GameController {
         this.ball = this.createBall();
         this._ballController = this.initializeBallController(this.ball, this.gameModel);
         this.ball_view = this.initializeBallView(this._mainCanvas.getContext("2d"), this.ball);
+
+        window.addEventListener("keydown", this.onKeyDown.bind(this), false);
+        window.addEventListener("keyup", this.onKeyUp.bind(this), false);
     }
 
     private createBall(): BallModel {
@@ -56,8 +59,6 @@ export class GameController {
         this.processInput();
         //update
         this.update(elapsedTime);
-        //render
-        this.render();
     }
 
     private processInput(): void {
@@ -68,8 +69,12 @@ export class GameController {
         this._mainCanvas.getContext("2d").clearRect(0, 0, this._mainCanvas.width, this._mainCanvas.height);
         this._ballController.update(elapsedTime);
     }
+    
+    private onKeyDown(event: KeyboardEvent): void {
+        this.gameModel.setKeyState(event.keyCode, true);
+    }
 
-    private render(): void {
-
+    private onKeyUp(event: KeyboardEvent): void {
+        this.gameModel.setKeyState(event.keyCode, false);
     }
 }

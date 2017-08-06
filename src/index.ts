@@ -1,5 +1,5 @@
 import { BallModel } from "./model/BallModel";
-import { HTMLBall } from "./view/ball/HTMLBall";
+import { HTMLBall } from "./view/ball/2DCanvasBall";
 import { GameController } from "./controller/GameController"
 function createMainCanvas(): HTMLCanvasElement {
     let canvas: HTMLCanvasElement = document.createElement('canvas');
