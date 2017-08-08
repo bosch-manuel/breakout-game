@@ -4,30 +4,43 @@ import { HTMLBall } from "../view/ball/2DCanvasBall";
 import Point = require("victor");
 import { BallController } from "./ball/BallController";
 import { GameModel } from "../model/GameModel";
+import { KeyModel } from "../model/KeyModel";
+import { KeyInputHandler } from "../utils/input/KeyInputHandler";
+import { PaddelController } from "./PaddelController";
+import { PaddelModel } from "../model/PaddleModel";
 
 export class GameController {
     private handle: number;
-    private ball: BallModel;
+    private ballModel: BallModel;
     private gameModel: GameModel;
     private ball_view: IBallView;
     private _mainCanvas: HTMLCanvasElement;
+    private keyModel: KeyModel;
+    private keyInputHandler: KeyInputHandler;
     private gameOver: boolean;
 
-    private _ballController: BallController;
+    private ballController: BallController;
+    private paddelController: PaddelController;
+    private paddelModel: PaddelModel;
 
     constructor(mainCanvas: HTMLCanvasElement) {
         this._mainCanvas = mainCanvas;
         this.gameModel = new GameModel(mainCanvas.width, mainCanvas.height);
-        this.ball = this.createBall();
-        this._ballController = this.initializeBallController(this.ball, this.gameModel);
-        this.ball_view = this.initializeBallView(this._mainCanvas.getContext("2d"), this.ball);
-
-        window.addEventListener("keydown", this.onKeyDown.bind(this), false);
-        window.addEventListener("keyup", this.onKeyUp.bind(this), false);
+        this.keyModel = new KeyModel();
+        this.paddelModel = this.createPaddelModel();
+        this.ballModel = this.createBallModel();
+        this.ballController = this.initializeBallController(this.ballModel, this.gameModel);
+        this.ball_view = this.initializeBallView(this._mainCanvas.getContext("2d"), this.ballModel);
+        this.keyInputHandler = this.initializeKeyInputHandler(this.keyModel);
+        this.paddelController = this.initializePaddelController(this.paddelModel, this.keyModel);
     }
 
-    private createBall(): BallModel {
+    private createBallModel(): BallModel {
         return new BallModel(50, new Point(this._mainCanvas.width / 2, this._mainCanvas.height / 2));
+    }
+
+    private createPaddelModel(): PaddelModel {
+        return new PaddelModel(10, 80)
     }
 
     private initializeBallView(context: CanvasRenderingContext2D, ball: BallModel): IBallView {
@@ -36,6 +49,14 @@ export class GameController {
 
     private initializeBallController(ball: BallModel, gameModel: GameModel): BallController {
         return new BallController(ball, gameModel);
+    }
+
+    private initializeKeyInputHandler(keyModel: KeyModel): KeyInputHandler {
+        return new KeyInputHandler(keyModel);
+    }
+
+    private initializePaddelController(paddelModel: PaddelModel, keyModel: KeyModel): PaddelController {
+        return new PaddelController(paddelModel, keyModel);
     }
 
     public startGame(): void {
@@ -67,14 +88,7 @@ export class GameController {
 
     private update(elapsedTime: number): void {
         this._mainCanvas.getContext("2d").clearRect(0, 0, this._mainCanvas.width, this._mainCanvas.height);
-        this._ballController.update(elapsedTime);
-    }
-    
-    private onKeyDown(event: KeyboardEvent): void {
-        this.gameModel.setKeyState(event.keyCode, true);
+        this.ballController.update(elapsedTime);
     }
 
-    private onKeyUp(event: KeyboardEvent): void {
-        this.gameModel.setKeyState(event.keyCode, false);
-    }
 }
