@@ -1,10 +1,18 @@
 export class Queue<T> {
-    private container: Array<T> = [];
-    private size: number = 0;
-    private capacity: number = 0;
+    static pop(): any {
+        throw new Error("Method not implemented.");
+    }
+
+    static size(arg0: any, arg1: any): any {
+        throw new Error("Method not implemented.");
+    }
+
+    private _container: Array<T> = [];
+    private _size: number = 0;
+    private _capacity: number = 0;
 
     constructor(capiticty: number) {
-        this.capacity = capiticty;
+        this._capacity = capiticty;
     }
 
     /**
@@ -15,11 +23,32 @@ export class Queue<T> {
      */
     public push(element: T): boolean {
         let wasAdded: boolean = false;
-        if (this.capacity < this.size) {
-            this.container.push(element);
+        if (this._capacity > this._size) {
+            this._size = this._container.push(element);
             wasAdded = true;
-            this.size++;
         }
         return wasAdded;
+    }
+
+    /**
+     * Removes the last element of the queue.
+     * 
+     * @returns last element of queue
+     */
+    public pop(): T {
+        let element: T = null;
+        if (this._size > 0) {
+            element = this._container.shift();
+            this._size--;
+        }
+        return element;
+    }
+
+    public get capacity(): number {
+        return this._capacity;
+    }
+
+    public get size(): number {
+        return this._size;
     }
 }
