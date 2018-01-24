@@ -35,4 +35,11 @@ describe('Check Queue functionality', () => {
             assert.equal(value, valuesFromQueue[index]);
         });
     });
+
+    it('Size of queue should be 0 after clearing it', () => {
+        queue.push(1);
+        queue.push(65);
+        queue.clear();
+        assert.equal(queue.size, 0);
+    });
 });

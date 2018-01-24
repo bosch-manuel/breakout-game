@@ -51,4 +51,12 @@ export class Queue<T> {
     public get size(): number {
         return this._size;
     }
+
+    /**
+     * Removes all elements from the queue
+     */
+    public clear(): void {
+        this._container = new Array<T>(this._capacity);
+        this._size = 0;
+    }
 }
