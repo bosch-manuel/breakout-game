@@ -4,6 +4,8 @@ import { HTMLBall } from "../view/ball/HTMLBall";
 import Point = require("victor");
 import { BallController } from "./ball/BallController";
 import { GameModel } from "../model/GameModel";
+import { KeyInputController } from "./input/KeyInputController";
+import { Queue } from "../utils/queue/Queue";
 
 export class GameController {
     private handle: number;
@@ -12,6 +14,7 @@ export class GameController {
     private ball_view: IBallView;
     private _mainCanvas: HTMLCanvasElement;
     private gameOver: boolean;
+    private keyInputController:KeyInputController;
 
     private _ballController: BallController;
 
@@ -33,6 +36,10 @@ export class GameController {
 
     private initializeBallController(ball: BallModel, gameModel: GameModel): BallController {
         return new BallController(ball, gameModel);
+    }
+
+    private initializeKeyInputController():KeyInputController {
+        return new KeyInputController();
     }
 
     public startGame(): void {
@@ -61,7 +68,12 @@ export class GameController {
     }
 
     private processInput(): void {
-
+        let event:KeyboardEvent;
+        let eventQueue:Queue<KeyboardEvent> = this.keyInputController.eventQueue;
+        while(this.keyInputController.eventQueue.size>0) {
+            event = eventQueue.pop();
+            this._ballController.processInput(event);
+        }        
     }
 
     private update(elapsedTime: number): void {

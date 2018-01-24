@@ -10,12 +10,18 @@ export class BallController implements IController {
     private _screenMaxX: number;
     private _screenMaxY: number;
 
+    private _startedMovingTimeStamp:number;
+
     constructor(ballModel: BallModel, gameModel: GameModel) {
         this._ballModel = ballModel;
         this._gameModel = gameModel;
 
         this._screenMaxX = this._gameModel.width;
         this._screenMaxY = this._gameModel.height;
+    }
+
+    public processInput(event:KeyboardEvent):void {
+ 
     }
 
     public update(elapsedTime: number): void {
